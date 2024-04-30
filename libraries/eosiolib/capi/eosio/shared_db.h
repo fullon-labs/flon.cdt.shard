@@ -6,7 +6,6 @@
 #pragma once
 
 #include "types.h"
-#include "eosio/types.hpp"
 
 #ifdef __cplusplus
 extern "C" {

@@ -44,7 +44,6 @@ apt-get update && apt-get install   \
         opam ocaml-interp           \
         python3                     \
         python3-pip                 \
-        pkg-config                  \
         time
 ```
 

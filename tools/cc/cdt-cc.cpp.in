@@ -36,7 +36,7 @@ int main(int argc, const char **argv) {
    if (opts.abigen) {
        llvm::outs() << "Warning, ABI generation is only available with cdt-abigen or flon-cpp\n";
    }
-   
+
    std::vector<std::string> outputs;
    for (auto input : opts.inputs) {
       std::vector<std::string> new_opts = opts.comp_options;
@@ -65,7 +65,7 @@ int main(int argc, const char **argv) {
          return -1;
       }
       llvm::sys::fs::remove(tmp_file);
-   } 
+   }
    // then link
    //
    if (opts.link) {

@@ -68,7 +68,7 @@ class abidiff {
          }
 
       }
-      
+
       int get_version(const ojson& abi) {
          std::string ver = abi["version"].as<std::string>();
          return (std::stod(ver.substr(ver.size()-3))*10);
@@ -82,17 +82,17 @@ class abidiff {
             std::cout << abi_2["version"] << "\n";
          }
       }
-      
+
       void print_struct(const ojson& abi, int index, char direction) {
          std::cout << direction << " struct\n";
          std::cout << pretty_print(abi["structs"].at(index)) << "\n";
       }
-      
+
       ojson get_base_type(const ojson& abi, const ojson& type) {
          for (int i=0; i < abi["types"].size(); i++) {
             if (abi["types"].at(i)["new_type_name"] == type)
                return abi["types"].at(i)["new_type_name"];
-         } 
+         }
          return type;
       }
       void find_structs(const ojson& abi1, const ojson& abi2, char direction) {
@@ -104,7 +104,7 @@ class abidiff {
                      break;
                   if (abi1["structs"].at(i)["base"] != abi2["structs"].at(j)["base"])
                      break;
-                  
+
                   bool _found = false;
                   for (int k=0; k < abi1["structs"].at(i)["fields"].size(); k++) {
                      if (abi1["structs"].at(i)["fields"].at(k)["name"] != abi2["structs"].at(j)["fields"].at(k)["name"] ||
@@ -301,13 +301,13 @@ int main(int argc, const char **argv) {
    cl::OptionCategory cat("flon-abidiff", "generates an abi from C++ project input");
 
    cl::opt<std::string> input_filename1(
-      cl::Positional, 
-      cl::desc("<input file1> ..."), 
+      cl::Positional,
+      cl::desc("<input file1> ..."),
       cl::Required,
       cl::cat(cat));
    cl::opt<std::string> input_filename2(
-      cl::Positional, 
-      cl::desc("<input file2> ..."), 
+      cl::Positional,
+      cl::desc("<input file2> ..."),
       cl::Required,
       cl::cat(cat));
 
@@ -319,6 +319,6 @@ int main(int argc, const char **argv) {
       std::cout << e.what() << "\n";
       return -1;
    }
-   
+
    return 0;
 }

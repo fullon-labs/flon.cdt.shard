@@ -74,8 +74,6 @@ create_symlink flon-objdump flon-objdump
 create_symlink flon-ranlib flon-ranlib
 create_symlink flon-readelf flon-readelf
 create_symlink flon-strip flon-strip
-create_symlink antler-proj antler-proj
-create_symlink antler-proj cdt-proj
 
 echo "Generating Tarball $NAME.tar.gz..."
 tar -cvzf $NAME.tar.gz ./${PREFIX}/* || exit 1

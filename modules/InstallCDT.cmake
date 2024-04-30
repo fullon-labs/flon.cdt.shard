@@ -74,7 +74,6 @@ cdt_tool_install_and_symlink(flon-cpp flon-cpp)
 cdt_tool_install_and_symlink(flon-ld flon-ld)
 cdt_tool_install_and_symlink(flon-abidiff flon-abidiff)
 cdt_tool_install_and_symlink(flon-init flon-init)
-cdt_tool_install_and_symlink(antler-proj antler-proj)
 
 cdt_clang_install(../lib/LLVMEosioApply${CMAKE_SHARED_LIBRARY_SUFFIX})
 cdt_clang_install(../lib/LLVMEosioSoftfloat${CMAKE_SHARED_LIBRARY_SUFFIX})

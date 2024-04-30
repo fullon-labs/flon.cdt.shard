@@ -186,7 +186,7 @@ int main(int argc, const char **argv) {
       for (auto input : outputs) {
          new_opts.insert(new_opts.begin(), input);
       }
-   
+
       if (!eosio::cdt::environment::exec_subprogram("flon-ld", new_opts)) {
          for (auto input : outputs) {
             llvm::sys::fs::remove(input);

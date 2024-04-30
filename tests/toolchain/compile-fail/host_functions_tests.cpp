@@ -83,7 +83,6 @@ extern "C" __attribute__((eosio_wasm_import)) void send_context_free_inline(char
 class [[eosio::contract]] host_functions_tests : public eosio::contract {
 public:
    using contract::contract;
-
    ACTION_TYPE
    bool resource() {
       int64_t ram_bytes;
