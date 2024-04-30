@@ -24,6 +24,9 @@ static constexpr int64_t i64max = numeric_limits<int64_t>::max(); //  9223372036
 static constexpr uint32_t u32min = numeric_limits<uint32_t>::min(); // 0
 static constexpr uint32_t u32max = numeric_limits<uint32_t>::max(); // 4294967295
 
+static constexpr int32_t block_interval_ms = block_timestamp::block_interval_ms;
+static constexpr int64_t block_interval_us = block_timestamp::block_interval_ms * 1000ll;
+
 // Definitions in `eosio.cdt/libraries/eosio/time.hpp`
 EOSIO_TEST_BEGIN(microseconds_type_test)
    //// explicit microseconds(uint64_t)/int64_t count()
@@ -402,8 +405,8 @@ EOSIO_TEST_BEGIN(block_timestamp_type_test)
    static const int64_t bt_epoch{946684800000LL};
 
    static const microseconds ms0{bt_epoch*1000};
-   static const microseconds ms1{bt_epoch*1000+500000};
-   static const microseconds ms2{bt_epoch*1000+1000000};
+   static const microseconds ms1{bt_epoch*1000+1*block_interval_us};
+   static const microseconds ms2{bt_epoch*1000+2*block_interval_us};
    static const microseconds ms_max{i64max};
 
    static const time_point tp0{ms0};
@@ -450,15 +453,15 @@ EOSIO_TEST_BEGIN(block_timestamp_type_test)
 
    // -------------------------------
    // time_point to_time_point()const
-   CHECK_EQUAL( block_timestamp{1}.to_time_point(), time_point{microseconds{(1*500+bt_epoch)*1000}} )
-   CHECK_EQUAL( block_timestamp{2}.to_time_point(), time_point{microseconds{(2*500+bt_epoch)*1000}} )
-   CHECK_EQUAL( block_timestamp{3}.to_time_point(), time_point{microseconds{(3*500+bt_epoch)*1000}} )
+   CHECK_EQUAL( block_timestamp{1}.to_time_point(), time_point{microseconds{(1*block_interval_ms+bt_epoch)*1000}} )
+   CHECK_EQUAL( block_timestamp{2}.to_time_point(), time_point{microseconds{(2*block_interval_ms+bt_epoch)*1000}} )
+   CHECK_EQUAL( block_timestamp{3}.to_time_point(), time_point{microseconds{(3*block_interval_ms+bt_epoch)*1000}} )
 
    // --------------------------
    // operator time_point()const
-   CHECK_EQUAL( block_timestamp{1}.operator time_point(), time_point{microseconds{(1*500+bt_epoch)*1000}} )
-   CHECK_EQUAL( block_timestamp{2}.operator time_point(), time_point{microseconds{(2*500+bt_epoch)*1000}} )
-   CHECK_EQUAL( block_timestamp{3}.operator time_point(), time_point{microseconds{(3*500+bt_epoch)*1000}} )
+   CHECK_EQUAL( block_timestamp{1}.operator time_point(), time_point{microseconds{(1*block_interval_ms+bt_epoch)*1000}} )
+   CHECK_EQUAL( block_timestamp{2}.operator time_point(), time_point{microseconds{(2*block_interval_ms+bt_epoch)*1000}} )
+   CHECK_EQUAL( block_timestamp{3}.operator time_point(), time_point{microseconds{(3*block_interval_ms+bt_epoch)*1000}} )
 
    // ---------------------------------
    // void operator=(const time_point&)
